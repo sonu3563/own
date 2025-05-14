@@ -223,3 +223,60 @@ this is for stripe webhok check through stripe and local console  stripe lis
 https://www.diawi.com/  and for firebase
 
  https://www.youtube.com/watch?v=ma0UYQ_VpMw&t=1200s https://rnfirebase.io/
+
+
+
+
+
+
+//keyboard app functionailty
+for ios
+  return (
+    <TouchableWithoutFeedback onPress={Keyboard.dismiss} accessible={false}>
+      <KeyboardAvoidingView
+        style={styles.container}
+        behavior={Platform.OS === 'ios' ? 'padding' : null}
+      >
+        <View style={styles.inner}>
+          <Text style={styles.title}>Login</Text>
+
+          <CustomInput
+            label="Email"
+            value={username}
+            onChangeText={setUsername}
+            placeholder="Enter your email"
+            type="text"
+          />
+
+          <CustomInput
+            label="Password"
+            value={password}
+            onChangeText={setPassword}
+            placeholder="Enter your password"
+            type="password"
+          />
+
+          {loading ? (
+            <ActivityIndicator size="large" color="#4A90E2" style={{ marginTop: 20 }} />
+          ) : (
+            <CustomButton title="Login" onPress={handleLogin} />
+          )}
+
+          {alertVisible && (
+            <Alert
+              variant={alertData.variant}
+              title={alertData.title}
+              message={alertData.message}
+              onClose={() => setAlertVisible(false)}
+            />
+          )}
+        </View>
+      </KeyboardAvoidingView>
+    </TouchableWithoutFeedback>
+  );
+
+
+and for android
+just need to add 
+
+android:windowsoftinput mode = "adjustResize"
